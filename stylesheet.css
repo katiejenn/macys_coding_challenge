@@ -1,0 +1,14 @@
+.border{
+	border-style: dotted;
+	border-width: 1px;
+}
+
+div.header{
+	padding: 10px;
+}
+
+div.events{
+	padding: 10px;
+}
+
+
