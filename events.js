@@ -33,15 +33,15 @@ function grabEvents(index){
 						/* if the lightbox already exists, we change the contents and visibility */
 						if($('div.lightbox').length > 0){
 							var content =
-							"Date: " + day + ", " + month + "<br>" + 
-							"Time: " + time + "<br>" + 
-							"Address: " + street + "<br>" + 
-							"Floor: " + floor + "<br>" + 
-							"City: " + city + "<br>" + 
-							"Description: " + description + "<br>";
+							"<b>Date: </b>" + day + ", " + month + "<br>" + 
+							"<b>Time: </b>" + time + "<br>" + 
+							"<b>Address: </b>" + street + "<br>" + 
+							"<b>Floor: </b>" + floor + "<br>" + 
+							"<b>City: </b>" + city + "<br>" + 
+							"<br><b>Description: </b>" + description + "<br>";
 							if(rsvpUrl !== "N/A"){
 								console.log(rsvpUrl);
-								content = content + "Rsvp <a href=" + rsvpUrl + ">here</a>";
+								content = content + "<br><b>Rsvp <a href=" + rsvpUrl + ">Here</a></b>";
 							}
 
 							$('div.content').html(content);
@@ -55,15 +55,15 @@ function grabEvents(index){
 							"<br>" +
 							"<a href='#' class='lightbox-close-trigger'>X click to close</a>" + 
 							"<div class='content'>" + 
-							"Date: " + day + ", " + month + "<br>" + 
-							"Time: " + time + "<br>" + 
-							"Address: " + street + "<br>" + 
-							"Floor: " + floor + "<br>" + 
-							"City: " + city + "<br>" + 
-							"Description: " + description + "<br>";
+							"<b>Date: </b>" + day + ", " + month + "<br>" + 
+							"<b>Time: </b>" + time + "<br>" + 
+							"<b>Address: </b>" + street + "<br>" + 
+							"<b>Floor: </b>" + floor + "<br>" + 
+							"<b>City: </b>" + city + "<br>" + 
+							"<br><b>Description: </b>" + description + "<br>";
 							if(rsvpUrl !== "N/A"){
 								console.log(rsvpUrl);
-								lightbox = lightbox + "Rsvp <a href=" + rsvpUrl + ">here</a></div></div>";
+								lightbox = lightbox + "<br><b>RSVP <a href=" + rsvpUrl + ">Here</a></b></div></div>";
 							} 
 							else{
 								lightbox = lightbox + '</div></div>';
@@ -83,14 +83,13 @@ function grabEvents(index){
 function renderEvents(events){
 	for(var i=0; i<events.length; i++){
 		var currentEvent = events[i];
-		var currentDiv = 'div.events';
-		$(currentDiv).append('Date: ', currentEvent.day + ',' + currentEvent.month + '<br>');
-		$(currentDiv).append('Time: ', currentEvent.time + '<br>');
-		$(currentDiv).append('Address: <br>');
+		var currentDiv = 'div.events-inner';
+		$(currentDiv).append('<b>Date: </b>', currentEvent.day + ', ' + currentEvent.month + '<br>');
+		$(currentDiv).append('<b>Time: </b>', currentEvent.time + '<br>');
+		$(currentDiv).append('<b>Address: </b><br>');
 		$(currentDiv).append(currentEvent.street + '<br>')
-		$(currentDiv).append(currentEvent.city + ',' + currentEvent.state + '<br>');
-		$(currentDiv).append('<a href="#" data-_id="' + i + '" onclick="lightboxTrigger(this)" class="details">See More Details</a><br>');
-		$(currentDiv).append('<br>');
+		$(currentDiv).append(currentEvent.city + ', ' + currentEvent.state + '<br>');
+		$(currentDiv).append('<a href="#" data-_id="' + i + '" onclick="lightboxTrigger(this)" class="details">See More Details</a><br><br>');
 	}
 
 }

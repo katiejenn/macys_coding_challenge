@@ -1,5 +1,6 @@
 body{
-	background-color: #FF3229;
+	background-color: #C83337;
+	font-family: sans-serif;
 }
 
 .border{
@@ -16,12 +17,18 @@ div.header{
 
 img.icon{
 	height: 500px;
+	padding-bottom: 10px;
 }
 
 div.events{
 	padding: 10px;
-	font-size: 1.5em;
-	text-align: center;
+	font-size: 1.3em;
+}
+
+div.events-inner{
+	width: 350px;
+	margin: 0 auto;
+	padding: 15px;
 }
 
 a.details{
@@ -42,13 +49,14 @@ div.lightbox{
 div.content{
 	height: 500px;
 	width: 650px;
-	background-color: #FFA429;
+	background-color: white;
 	margin: 0 auto;
 	margin-top: 60px;
-	text-align: center;
+	text-align: left;
 	padding: 20px;
-	border: 0.5em solid #FF3229;
-	border-radius: 10px;
+	border: 0.3em solid #FF3229;
+	border-radius: 5px;
+	font-size: 1.2em;
 }
 
 a.lightbox-close-trigger{
