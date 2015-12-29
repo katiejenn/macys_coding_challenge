@@ -89,7 +89,7 @@ function renderEvents(events){
 		$(currentDiv).append('Address: <br>');
 		$(currentDiv).append(currentEvent.street + '<br>')
 		$(currentDiv).append(currentEvent.city + ',' + currentEvent.state + '<br>');
-		$(currentDiv).append('<a href="#" data-_id="' + i + '" onclick="lightboxTrigger(this)">See More Details</a><br>');
+		$(currentDiv).append('<a href="#" data-_id="' + i + '" onclick="lightboxTrigger(this)" class="details">See More Details</a><br>');
 		$(currentDiv).append('<br>');
 	}
 
