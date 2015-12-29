@@ -1,11 +1,11 @@
 $(function(){
 
 	grabEvents();
-	lightboxTrigger();
+	//lightboxTrigger();
 
 });
 
-function grabEvents(){
+function grabEvents(index){
 
 	/* request from API endpoint to grab events */
 	$.ajax({
@@ -14,10 +14,61 @@ function grabEvents(){
 	            jsonpCallback: 'cmsCallback',
 	            dataType: "jsonp",
 	            success: function(res){
-	            	console.log(res)
-	            	console.log(res.categories.EnglishEvents2015.entries);
-	            	englishEvents = res.categories.EnglishEvents2015.entries;
-	            	renderEvents(englishEvents);
+	            	// console.log(res)
+	            	// console.log(res.categories.EnglishEvents2015.entries);
+	            	var englishEvents = res.categories.EnglishEvents2015.entries;
+					if(typeof index === 'number'){
+						// console.log(index);
+						var currentEvent = englishEvents[index],
+						day = currentEvent.day,
+						month = currentEvent.month,
+						time = currentEvent.time,
+						street = currentEvent.street,
+						city = currentEvent.city,
+						state = currentEvent.state,
+						floor = currentEvent.floor,
+						description = currentEvent.desc,
+						rsvpUrl = currentEvent.rsvp;
+
+						/* if the lightbox already exists, we change the contents and visibility */
+						if($('div.lightbox').length > 0){
+							var content =
+							"Date: " + day + ", " + month + "<br>" + 
+							"Time: " + time + "<br>" + 
+							"Address: " + street + "<br>" + 
+							"Floor: " + floor + "<br>" + 
+							"City: " + city + "<br>" + 
+							"Description: " + description + "<br>" + 
+							"Rsvp <a href=" + rsvpUrl + ">here</a>";
+
+							$('div.content').html(content);
+							$('div.lightbox').show();
+
+						}
+						/* if the lightbox does not exist yet, we append it to the page */
+						else{
+							var lightbox = 
+							"<div class='lightbox'>" + 
+							"<br>" +
+							"<a href='#' class='lightbox-close-trigger'>X click to close</a>" + 
+							"<div class='content'>" +
+							"<br><br>" + 
+							"Date: " + day + ", " + month + "<br>" + 
+							"Time: " + time + "<br>" + 
+							"Address: " + street + "<br>" + 
+							"Floor: " + floor + "<br>" + 
+							"City: " + city + "<br>" + 
+							"Description: " + description + "<br>" + 
+							"Rsvp <a href=" + rsvpUrl + ">here</a>" + 
+							"</div>" +
+							"</div>";
+
+							$('div#wrapper').append(lightbox);
+						}
+					}
+					else{
+	            		renderEvents(englishEvents);
+					}
 	            }
 	        });
 }
@@ -32,35 +83,17 @@ function renderEvents(events){
 		$(currentDiv).append('Address: <br>');
 		$(currentDiv).append(currentEvent.street + '<br>')
 		$(currentDiv).append(currentEvent.city + ',' + currentEvent.state + '<br>');
-		$(currentDiv).append('<a href="#" class="lightbox-trigger">See More Details</a><br>');
+		$(currentDiv).append('<a href="#" data-_id="' + i + '" onclick="lightboxTrigger(this)">See More Details</a><br>');
 		$(currentDiv).append('<br>');
 	}
 
 }
 
-function lightboxTrigger(){
-	/* event handler to open the lightbox */
-	$('body').on('click', 'a.lightbox-trigger', function(e){
-		/* if the lightbox already exists, we change the contents and visibility */
-		if($('div.lightbox').length > 0){
-			$('div.content').html('NEW lightbox content');
-			$('div.lightbox').show();
-		}
-		/* if the lightbox does not exist yet, we append it to the page */
-		else{
-			var lightbox = 
-			"<div class='lightbox'>" + 
-				"<br>" +
-				"<a href='#' class='lightbox-close-trigger'>X click to close</a>" + 
-				"<div class='content'>" +
-					"<br><br>" + 
-					"woohoo! it is a lightbox!" + 
-				"</div>" +
-			"</div>";
+/* event handlers for the lightbox */
+function lightboxTrigger(current){
+	var id = $(current).data()._id;
+	grabEvents(id);
 
-			$('div#wrapper').append(lightbox);
-		}
-	})
 
 	/* event handler for the link to close the lightbox */
 	$('body').on('click', 'a.lightbox-close-trigger', function(e){

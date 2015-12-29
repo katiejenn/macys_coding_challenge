@@ -24,12 +24,13 @@ div.lightbox{
 }
 
 div.content{
-	height: 350px;
-	width: 500px;
+	height: 500px;
+	width: 650px;
 	background-color: white;
 	margin: 0 auto;
 	margin-top: 60px;
 	text-align: center;
+	padding: 10px;
 }
 
 a.lightbox-close-trigger{
