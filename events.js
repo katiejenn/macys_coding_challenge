@@ -38,8 +38,11 @@ function grabEvents(index){
 							"Address: " + street + "<br>" + 
 							"Floor: " + floor + "<br>" + 
 							"City: " + city + "<br>" + 
-							"Description: " + description + "<br>" + 
-							"Rsvp <a href=" + rsvpUrl + ">here</a>";
+							"Description: " + description + "<br>";
+							if(rsvpUrl !== "N/A"){
+								console.log(rsvpUrl);
+								content = content + "Rsvp <a href=" + rsvpUrl + ">here</a>";
+							}
 
 							$('div.content').html(content);
 							$('div.lightbox').show();
@@ -51,17 +54,20 @@ function grabEvents(index){
 							"<div class='lightbox'>" + 
 							"<br>" +
 							"<a href='#' class='lightbox-close-trigger'>X click to close</a>" + 
-							"<div class='content'>" +
-							"<br><br>" + 
+							"<div class='content'>" + 
 							"Date: " + day + ", " + month + "<br>" + 
 							"Time: " + time + "<br>" + 
 							"Address: " + street + "<br>" + 
 							"Floor: " + floor + "<br>" + 
 							"City: " + city + "<br>" + 
-							"Description: " + description + "<br>" + 
-							"Rsvp <a href=" + rsvpUrl + ">here</a>" + 
-							"</div>" +
-							"</div>";
+							"Description: " + description + "<br>";
+							if(rsvpUrl !== "N/A"){
+								console.log(rsvpUrl);
+								lightbox = lightbox + "Rsvp <a href=" + rsvpUrl + ">here</a></div></div>";
+							} 
+							else{
+								lightbox = lightbox + '</div></div>';
+							}
 
 							$('div#wrapper').append(lightbox);
 						}
