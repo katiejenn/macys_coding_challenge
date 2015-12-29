@@ -1,9 +1,8 @@
 $(function(){
+
 	grabEvents();
-	
-	$('body').on('click', 'a.lightbox-trigger', function(e){
-		alert('triggered the lightbox!');
-	})
+	lightboxTrigger();
+
 });
 
 function grabEvents(){
@@ -18,7 +17,6 @@ function grabEvents(){
 	            	console.log(res)
 	            	console.log(res.categories.EnglishEvents2015.entries);
 	            	englishEvents = res.categories.EnglishEvents2015.entries;
-
 	            	renderEvents(englishEvents);
 	            }
 	        });
@@ -41,10 +39,8 @@ function renderEvents(events){
 }
 
 function lightboxTrigger(){
-	/* if the buttton is clicked, the lightbox appears */
-	$('.lightbox-trigger').on('click', function(e){
-		e.preventDefault();
-
+	/* event handler to open the lightbox */
+	$('body').on('click', 'a.lightbox-trigger', function(e){
 		/* if the lightbox already exists, we change the contents and visibility */
 		if($('div.lightbox').length > 0){
 			$('div.content').html('NEW lightbox content');
@@ -55,7 +51,7 @@ function lightboxTrigger(){
 			var lightbox = 
 			"<div class='lightbox'>" + 
 				"<br>" +
-				"<a href='#' class='lightbox-trigger'>X click to close</a>" + 
+				"<a href='#' class='lightbox-close-trigger'>X click to close</a>" + 
 				"<div class='content'>" +
 					"<br><br>" + 
 					"woohoo! it is a lightbox!" + 
@@ -64,11 +60,10 @@ function lightboxTrigger(){
 
 			$('div#wrapper').append(lightbox);
 		}
-
 	})
 
 	/* event handler for the link to close the lightbox */
-	$('body').on('click', 'a.lightbox-trigger', function(e){
+	$('body').on('click', 'a.lightbox-close-trigger', function(e){
 		$('div.lightbox').hide();
 	})
 }
