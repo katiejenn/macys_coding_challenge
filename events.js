@@ -1,3 +1,4 @@
+/* set the default language to English */
 var language = "english";
 
 $(function(){
@@ -58,7 +59,7 @@ function grabEvents(index){
 						/* if the lightbox already exists, we change the contents and visibility */
 						if($('div.lightbox').length > 0){
 
-							/* the data rendered on the page will differ by language */
+							/* We render English on the page if the language selected was English */
 							if(language === "english"){
 
 								var content =
@@ -80,6 +81,7 @@ function grabEvents(index){
 									content = content + "<div data-_id='" + next + "' class='next navigate' onclick='lightboxTrigger(this)'>Next</div>";
 								}
 
+							/* We render Spanish on the page if the language selected was Spanish */
 							}else{
 
 								var content =
@@ -110,12 +112,13 @@ function grabEvents(index){
 						/* if the lightbox does not exist yet, we append it to the page */
 						else{
 
+							/* We render Spanish on the page if the language chosen was Spanish */
 							if(language === "spanish"){
 
 								var lightbox = 
 								"<div class='lightbox'>" + 
 								"<br>" +
-								"<a href='#' class='lightbox-close-trigger'>X click to close</a>" + 
+								"<a href='#' class='lightbox-close-trigger'><b>X</b></a>" + 
 								"<div class='content'>" + 
 								"<b>Fecha: </b>" + day + ", " + month + "<br>" + 
 								"<b>Hora: </b>" + time + "<br>" + 
@@ -137,12 +140,13 @@ function grabEvents(index){
 									lightbox = lightbox + "<div data-_id='" + next + "' class='next navigate' onclick='lightboxTrigger(this)'>Entrante</div>";
 								}
 
+							/* We render English on the page if the language chosen was English */
 							}else{
 
 								var lightbox = 
 								"<div class='lightbox'>" + 
 								"<br>" +
-								"<a href='#' class='lightbox-close-trigger'>X click to close</a>" + 
+								"<a href='#' class='lightbox-close-trigger'><b>X</b></a>" + 
 								"<div class='content'>" + 
 								"<b>Date: </b>" + day + ", " + month + "<br>" + 
 								"<b>Time: </b>" + time + "<br>" + 
@@ -223,6 +227,7 @@ function lightboxTrigger(current){
 	})
 }
 
+/* event handlers to detect if a new language was chosen */
 function languageSelected(){
 	$('body').on('click', 'span.english', function(e){
 		$('span.spanish').css("color", "black");
