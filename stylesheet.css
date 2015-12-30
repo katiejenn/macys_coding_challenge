@@ -31,8 +31,32 @@ div.events-inner{
 	padding: 15px;
 }
 
-a.details{
+span.details{
 	color: #FFA429;
+}
+
+span.details:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+div.navigate{
+	position: absolute;
+	bottom: 0;
+	margin-bottom: 1em;
+}
+
+div.navigate:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+/*span.previous{
+	margin-left: 10em;
+}*/
+
+div.next{
+	margin-left: 32em;
 }
 
 /* CSS for the lightbox */
@@ -51,12 +75,12 @@ div.content{
 	width: 650px;
 	background-color: white;
 	margin: 0 auto;
-	margin-top: 60px;
 	text-align: left;
 	padding: 20px;
 	border: 0.3em solid #FF3229;
 	border-radius: 5px;
 	font-size: 1.2em;
+	position: relative;
 }
 
 a.lightbox-close-trigger{

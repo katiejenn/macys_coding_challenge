@@ -1,7 +1,6 @@
 $(function(){
 
 	grabEvents();
-	//lightboxTrigger();
 
 });
 
@@ -14,11 +13,26 @@ function grabEvents(index){
 	            jsonpCallback: 'cmsCallback',
 	            dataType: "jsonp",
 	            success: function(res){
-	            	// console.log(res)
-	            	// console.log(res.categories.EnglishEvents2015.entries);
-	            	var englishEvents = res.categories.EnglishEvents2015.entries;
+	            	var englishEvents = res.categories.EnglishEvents2015.entries,
+	            	previous,
+	            	next;
+
+	            	/* if the index type is a number, we are only looking for information from one specific event */
 					if(typeof index === 'number'){
-						// console.log(index);
+						console.log("index:", index);
+
+						/* if index is currently 0, previous will be undefined. Otherwise, it will contain the index of the previous event */
+						if(index !== 0){
+							previous = index - 1;
+							console.log("previous:", previous);
+						}
+						/* if the index is the last element, next will be undefined. Otherwise, it will contain the index of the next event */
+						if(index !== englishEvents.length-1){
+							next = index + 1;
+							console.log("next:",next);
+						}
+
+						/* grabbing all the event info for the lightbox view */
 						var currentEvent = englishEvents[index],
 						day = currentEvent.day,
 						month = currentEvent.month,
@@ -40,9 +54,17 @@ function grabEvents(index){
 							"<b>City: </b>" + city + "<br>" + 
 							"<br><b>Description: </b>" + description + "<br>";
 							if(rsvpUrl !== "N/A"){
-								console.log(rsvpUrl);
-								content = content + "<br><b>Rsvp <a href=" + rsvpUrl + ">Here</a></b>";
+								content = content + "<br><b>Rsvp <a target='_blank' href=" + rsvpUrl + ">Here</a></b>";
 							}
+
+							if(previous === 0 || previous){
+								content = content + "<div data-_id='" + previous + "' class='previous navigate' onclick='lightboxTrigger(this)'>Previous</div>";
+							}
+							
+							if(next){
+								content = content + "<div data-_id='" + next + "' class='next navigate' onclick='lightboxTrigger(this)'>Next</div>";
+							}
+
 
 							$('div.content').html(content);
 							$('div.lightbox').show();
@@ -61,17 +83,27 @@ function grabEvents(index){
 							"<b>Floor: </b>" + floor + "<br>" + 
 							"<b>City: </b>" + city + "<br>" + 
 							"<br><b>Description: </b>" + description + "<br>";
+
 							if(rsvpUrl !== "N/A"){
-								console.log(rsvpUrl);
-								lightbox = lightbox + "<br><b>RSVP <a href=" + rsvpUrl + ">Here</a></b></div></div>";
+								lightbox = lightbox + "<br><b>RSVP <a target='_blank' href=" + rsvpUrl + ">Here</a></b>";
 							} 
-							else{
-								lightbox = lightbox + '</div></div>';
+							
+
+							if(previous === 0 || previous){
+								lightbox = lightbox + "<div data-_id='" + previous + "' class='previous navigate' onclick='lightboxTrigger(this)'>Previous</div>";
+							}
+							
+							if(next){
+								lightbox = lightbox + "<div data-_id='" + next + "' class='next navigate' onclick='lightboxTrigger(this)'>Next</div>";
 							}
 
+
+
+							lightbox = lightbox + '</div></div>';
 							$('div#wrapper').append(lightbox);
 						}
 					}
+					/* if index is undefined, we are grabbing all the events to render onto the main page */
 					else{
 	            		renderEvents(englishEvents);
 					}
@@ -89,7 +121,7 @@ function renderEvents(events){
 		$(currentDiv).append('<b>Address: </b><br>');
 		$(currentDiv).append(currentEvent.street + '<br>')
 		$(currentDiv).append(currentEvent.city + ', ' + currentEvent.state + '<br>');
-		$(currentDiv).append('<a href="#" data-_id="' + i + '" onclick="lightboxTrigger(this)" class="details">See More Details</a><br><br>');
+		$(currentDiv).append('<span data-_id="' + i + '" onclick="lightboxTrigger(this)" class="details">See More Details</span><br><br>');
 	}
 
 }
@@ -105,4 +137,19 @@ function lightboxTrigger(current){
 		$('div.lightbox').hide();
 	})
 }
+
+function addNavigation(previous, next, content){
+
+	if(previous){
+		content = content + "<div class='navigate'><span data-_id='" + previous + "' class='previous navigate'>Previous</span>";
+	}
+	
+	if(next){
+		content = content + "<span data-_id='" + next + "' class='next navigate'>Next<span></div>";
+	}							
+
+	return content;
+}
+
+
 
