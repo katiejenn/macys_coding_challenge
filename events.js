@@ -1,6 +1,7 @@
 var language = "english";
 
 $(function(){
+
 	grabEvents();
 	languageSelected();
 
@@ -85,10 +86,10 @@ function grabEvents(index){
 								var content =
 								"<b>Fecha: </b>" + day + ", " + month + "<br>" + 
 								"<b>Hora: </b>" + time + "<br>" + 
-								"<b>Direccion: </b>" + street + "<br>" + 
+								"<b>Direcci&oacute;n: </b>" + street + "<br>" + 
 								"<b>Piso: </b>" + floor + "<br>" + 
 								"<b>Ciudad: </b>" + city + "<br>" + 
-								"<br><b>Descripcion: </b>" + description + "<br>";
+								"<br><b>Descripci&oacute;n: </b>" + description + "<br>";
 								if(rsvpUrl !== "N/A"){
 									content = content + "<br><b>Rsvp <a target='_blank' href=" + rsvpUrl + ">Here</a></b>";
 								}
@@ -98,7 +99,7 @@ function grabEvents(index){
 								}
 								
 								if(next){
-									content = content + "<div data-_id='" + next + "' class='next navigate' onclick='lightboxTrigger(this)'>Entrante</div>";
+									content = content + "<div data-_id='" + next + "' class='next navigate' onclick='lightboxTrigger(this)'>Siguiente</div>";
 								}
 
 							}
@@ -120,10 +121,10 @@ function grabEvents(index){
 								"<div class='content'>" + 
 								"<b>Fecha: </b>" + day + ", " + month + "<br>" + 
 								"<b>Hora: </b>" + time + "<br>" + 
-								"<b>Direccion: </b>" + street + "<br>" + 
+								"<b>Direcci&oacute;n: </b>" + street + "<br>" + 
 								"<b>Piso: </b>" + floor + "<br>" + 
 								"<b>Ciudad: </b>" + city + "<br>" + 
-								"<br><b>Descripcion: </b>" + description + "<br>";
+								"<br><b>Descripci&oacute;n: </b>" + description + "<br>";
 
 								if(rsvpUrl !== "N/A"){
 									lightbox = lightbox + "<br><b>RSVP <a target='_blank' href=" + rsvpUrl + ">Here</a></b>";
@@ -135,7 +136,7 @@ function grabEvents(index){
 								}
 								
 								if(next){
-									lightbox = lightbox + "<div data-_id='" + next + "' class='next navigate' onclick='lightboxTrigger(this)'>Entrante</div>";
+									lightbox = lightbox + "<div data-_id='" + next + "' class='next navigate' onclick='lightboxTrigger(this)'>Siguiente</div>";
 								}
 
 							/* We render English on the page if the language chosen was English */
@@ -203,10 +204,10 @@ function renderEvents(events){
 
 			$(currentDiv).append('<b>Fecha: </b>', currentEvent.day + ', ' + currentEvent.month + '<br>');
 			$(currentDiv).append('<b>Hora: </b>', currentEvent.time + '<br>');
-			$(currentDiv).append('<b>Direccion: </b><br>');
+			$(currentDiv).append('<b>Direcci&oacute;n: </b><br>');
 			$(currentDiv).append(currentEvent.street + '<br>')
 			$(currentDiv).append(currentEvent.city + ', ' + currentEvent.state + '<br>');
-			$(currentDiv).append('<span data-_id="' + i + '" onclick="lightboxTrigger(this)" class="details">Ver Mas Detalles</span><br><br>');
+			$(currentDiv).append('<span data-_id="' + i + '" onclick="lightboxTrigger(this)" class="details">Para Obtener M&aacute;s Detalles</span><br><br>');
 		}
 		
 	}
