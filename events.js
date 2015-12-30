@@ -1,4 +1,3 @@
-/* set the default language to English */
 var language = "english";
 
 $(function(){
