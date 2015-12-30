@@ -3,6 +3,10 @@ body{
 	font-family: sans-serif;
 }
 
+p.language-options{
+	float:left;
+}
+
 .border{
 	border-style: solid;
 	border-width: 3px;
@@ -10,7 +14,6 @@ body{
 }
 
 div.header{
-	padding-left: 20px;
 	text-align: center;
 	height: 500px;
 }
