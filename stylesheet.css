@@ -7,6 +7,16 @@ p.language-options{
 	float:left;
 }
 
+span.english:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+span.spanish:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
 .border{
 	border-style: solid;
 	border-width: 3px;

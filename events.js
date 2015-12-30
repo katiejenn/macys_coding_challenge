@@ -1,6 +1,9 @@
+var language = "english";
+
 $(function(){
 
 	grabEvents();
+	languageSelected();
 
 });
 
@@ -13,9 +16,19 @@ function grabEvents(index){
 	            jsonpCallback: 'cmsCallback',
 	            dataType: "jsonp",
 	            success: function(res){
-	            	var englishEvents = res.categories.EnglishEvents2015.entries,
+	            	var events,
 	            	previous,
 	            	next;
+
+	            	if(language === "english"){
+	            		console.log("grabbing events in English");
+	            		events = res.categories.EnglishEvents2015.entries;
+	            	}
+	            	else{
+	            		console.log("grabbing events in Spanish");
+	            		events = res.categories.SpanishEvents2014.entries;
+	            		console.log(events);
+	            	}
 
 	            	/* if the index type is a number, we are only looking for information from one specific event */
 					if(typeof index === 'number'){
@@ -27,13 +40,13 @@ function grabEvents(index){
 							console.log("previous:", previous);
 						}
 						/* if the index is the last element, next will be undefined. Otherwise, it will contain the index of the next event */
-						if(index !== englishEvents.length-1){
+						if(index !== events.length-1){
 							next = index + 1;
 							console.log("next:",next);
 						}
 
 						/* grabbing all the event info for the lightbox view */
-						var currentEvent = englishEvents[index],
+						var currentEvent = events[index],
 						day = currentEvent.day,
 						month = currentEvent.month,
 						time = currentEvent.time,
@@ -105,7 +118,7 @@ function grabEvents(index){
 					}
 					/* if index is undefined, we are grabbing all the events to render onto the main page */
 					else{
-	            		renderEvents(englishEvents);
+	            		renderEvents(events);
 					}
 	            }
 	        });
@@ -138,18 +151,20 @@ function lightboxTrigger(current){
 	})
 }
 
-function addNavigation(previous, next, content){
+function languageSelected(){
+	$('body').on('click', 'span.english', function(e){
+		language = "english";
+		grabEvents();
+	})
 
-	if(previous){
-		content = content + "<div class='navigate'><span data-_id='" + previous + "' class='previous navigate'>Previous</span>";
-	}
-	
-	if(next){
-		content = content + "<span data-_id='" + next + "' class='next navigate'>Next<span></div>";
-	}							
-
-	return content;
+	$('body').on('click', 'span.spanish', function(e){
+		language = "spanish";
+		console.log("current language is:", language);
+		grabEvents();
+	})
 }
+
+
 
 
 
