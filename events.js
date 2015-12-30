@@ -20,14 +20,12 @@ function grabEvents(index){
 	            	previous,
 	            	next;
 
+	            	/* the events grabbed from the API endpoint are based off the language chosen. We grab 2014 events for the Spanish option because 2015 is empty in the database (mock data). */
 	            	if(language === "english"){
-	            		console.log("grabbing events in English");
 	            		events = res.categories.EnglishEvents2015.entries;
 	            	}
 	            	else{
-	            		console.log("grabbing events in Spanish");
 	            		events = res.categories.SpanishEvents2014.entries;
-	            		console.log(events);
 	            	}
 
 	            	/* if the index type is a number, we are only looking for information from one specific event */
@@ -59,25 +57,51 @@ function grabEvents(index){
 
 						/* if the lightbox already exists, we change the contents and visibility */
 						if($('div.lightbox').length > 0){
-							var content =
-							"<b>Date: </b>" + day + ", " + month + "<br>" + 
-							"<b>Time: </b>" + time + "<br>" + 
-							"<b>Address: </b>" + street + "<br>" + 
-							"<b>Floor: </b>" + floor + "<br>" + 
-							"<b>City: </b>" + city + "<br>" + 
-							"<br><b>Description: </b>" + description + "<br>";
-							if(rsvpUrl !== "N/A"){
-								content = content + "<br><b>Rsvp <a target='_blank' href=" + rsvpUrl + ">Here</a></b>";
-							}
 
-							if(previous === 0 || previous){
-								content = content + "<div data-_id='" + previous + "' class='previous navigate' onclick='lightboxTrigger(this)'>Previous</div>";
-							}
-							
-							if(next){
-								content = content + "<div data-_id='" + next + "' class='next navigate' onclick='lightboxTrigger(this)'>Next</div>";
-							}
+							/* the data rendered on the page will differ by language */
+							if(language === "english"){
 
+								var content =
+								"<b>Date: </b>" + day + ", " + month + "<br>" + 
+								"<b>Time: </b>" + time + "<br>" + 
+								"<b>Address: </b>" + street + "<br>" + 
+								"<b>Floor: </b>" + floor + "<br>" + 
+								"<b>City: </b>" + city + "<br>" + 
+								"<br><b>Description: </b>" + description + "<br>";
+								if(rsvpUrl !== "N/A"){
+									content = content + "<br><b>Rsvp <a target='_blank' href=" + rsvpUrl + ">Here</a></b>";
+								}
+
+								if(previous === 0 || previous){
+									content = content + "<div data-_id='" + previous + "' class='previous navigate' onclick='lightboxTrigger(this)'>Previous</div>";
+								}
+								
+								if(next){
+									content = content + "<div data-_id='" + next + "' class='next navigate' onclick='lightboxTrigger(this)'>Next</div>";
+								}
+
+							}else{
+
+								var content =
+								"<b>Fecha: </b>" + day + ", " + month + "<br>" + 
+								"<b>Hora: </b>" + time + "<br>" + 
+								"<b>Direccion: </b>" + street + "<br>" + 
+								"<b>Piso: </b>" + floor + "<br>" + 
+								"<b>Ciudad: </b>" + city + "<br>" + 
+								"<br><b>Descripcion: </b>" + description + "<br>";
+								if(rsvpUrl !== "N/A"){
+									content = content + "<br><b>Rsvp <a target='_blank' href=" + rsvpUrl + ">Here</a></b>";
+								}
+
+								if(previous === 0 || previous){
+									content = content + "<div data-_id='" + previous + "' class='previous navigate' onclick='lightboxTrigger(this)'>Previo</div>";
+								}
+								
+								if(next){
+									content = content + "<div data-_id='" + next + "' class='next navigate' onclick='lightboxTrigger(this)'>Entrante</div>";
+								}
+
+							}
 
 							$('div.content').html(content);
 							$('div.lightbox').show();
@@ -85,29 +109,61 @@ function grabEvents(index){
 						}
 						/* if the lightbox does not exist yet, we append it to the page */
 						else{
-							var lightbox = 
-							"<div class='lightbox'>" + 
-							"<br>" +
-							"<a href='#' class='lightbox-close-trigger'>X click to close</a>" + 
-							"<div class='content'>" + 
-							"<b>Date: </b>" + day + ", " + month + "<br>" + 
-							"<b>Time: </b>" + time + "<br>" + 
-							"<b>Address: </b>" + street + "<br>" + 
-							"<b>Floor: </b>" + floor + "<br>" + 
-							"<b>City: </b>" + city + "<br>" + 
-							"<br><b>Description: </b>" + description + "<br>";
 
-							if(rsvpUrl !== "N/A"){
-								lightbox = lightbox + "<br><b>RSVP <a target='_blank' href=" + rsvpUrl + ">Here</a></b>";
-							} 
-							
+							if(language === "spanish"){
 
-							if(previous === 0 || previous){
-								lightbox = lightbox + "<div data-_id='" + previous + "' class='previous navigate' onclick='lightboxTrigger(this)'>Previous</div>";
-							}
-							
-							if(next){
-								lightbox = lightbox + "<div data-_id='" + next + "' class='next navigate' onclick='lightboxTrigger(this)'>Next</div>";
+								var lightbox = 
+								"<div class='lightbox'>" + 
+								"<br>" +
+								"<a href='#' class='lightbox-close-trigger'>X click to close</a>" + 
+								"<div class='content'>" + 
+								"<b>Fecha: </b>" + day + ", " + month + "<br>" + 
+								"<b>Hora: </b>" + time + "<br>" + 
+								"<b>Direccion: </b>" + street + "<br>" + 
+								"<b>Piso: </b>" + floor + "<br>" + 
+								"<b>Ciudad: </b>" + city + "<br>" + 
+								"<br><b>Descripcion: </b>" + description + "<br>";
+
+								if(rsvpUrl !== "N/A"){
+									lightbox = lightbox + "<br><b>RSVP <a target='_blank' href=" + rsvpUrl + ">Here</a></b>";
+								} 
+								
+
+								if(previous === 0 || previous){
+									lightbox = lightbox + "<div data-_id='" + previous + "' class='previous navigate' onclick='lightboxTrigger(this)'>Previo</div>";
+								}
+								
+								if(next){
+									lightbox = lightbox + "<div data-_id='" + next + "' class='next navigate' onclick='lightboxTrigger(this)'>Entrante</div>";
+								}
+
+							}else{
+
+								var lightbox = 
+								"<div class='lightbox'>" + 
+								"<br>" +
+								"<a href='#' class='lightbox-close-trigger'>X click to close</a>" + 
+								"<div class='content'>" + 
+								"<b>Date: </b>" + day + ", " + month + "<br>" + 
+								"<b>Time: </b>" + time + "<br>" + 
+								"<b>Address: </b>" + street + "<br>" + 
+								"<b>Floor: </b>" + floor + "<br>" + 
+								"<b>City: </b>" + city + "<br>" + 
+								"<br><b>Description: </b>" + description + "<br>";
+
+								if(rsvpUrl !== "N/A"){
+									lightbox = lightbox + "<br><b>RSVP <a target='_blank' href=" + rsvpUrl + ">Here</a></b>";
+								} 
+								
+
+								if(previous === 0 || previous){
+									lightbox = lightbox + "<div data-_id='" + previous + "' class='previous navigate' onclick='lightboxTrigger(this)'>Previous</div>";
+								}
+								
+								if(next){
+									lightbox = lightbox + "<div data-_id='" + next + "' class='next navigate' onclick='lightboxTrigger(this)'>Next</div>";
+								}
+
 							}
 
 
@@ -118,6 +174,7 @@ function grabEvents(index){
 					}
 					/* if index is undefined, we are grabbing all the events to render onto the main page */
 					else{
+						console.log("rendering events");
 	            		renderEvents(events);
 					}
 	            }
@@ -126,15 +183,30 @@ function grabEvents(index){
 
 /* helper function for rendering events */
 function renderEvents(events){
+	var currentDiv = 'div.events-inner';
+	$(currentDiv).html('');
+
 	for(var i=0; i<events.length; i++){
 		var currentEvent = events[i];
-		var currentDiv = 'div.events-inner';
-		$(currentDiv).append('<b>Date: </b>', currentEvent.day + ', ' + currentEvent.month + '<br>');
-		$(currentDiv).append('<b>Time: </b>', currentEvent.time + '<br>');
-		$(currentDiv).append('<b>Address: </b><br>');
-		$(currentDiv).append(currentEvent.street + '<br>')
-		$(currentDiv).append(currentEvent.city + ', ' + currentEvent.state + '<br>');
-		$(currentDiv).append('<span data-_id="' + i + '" onclick="lightboxTrigger(this)" class="details">See More Details</span><br><br>');
+
+		if(language === "english"){
+
+			$(currentDiv).append('<b>Date: </b>', currentEvent.day + ', ' + currentEvent.month + '<br>');
+			$(currentDiv).append('<b>Time: </b>', currentEvent.time + '<br>');
+			$(currentDiv).append('<b>Address: </b><br>');
+			$(currentDiv).append(currentEvent.street + '<br>')
+			$(currentDiv).append(currentEvent.city + ', ' + currentEvent.state + '<br>');
+			$(currentDiv).append('<span data-_id="' + i + '" onclick="lightboxTrigger(this)" class="details">See More Details</span><br><br>');
+		}else{
+
+			$(currentDiv).append('<b>Fecha: </b>', currentEvent.day + ', ' + currentEvent.month + '<br>');
+			$(currentDiv).append('<b>Hora: </b>', currentEvent.time + '<br>');
+			$(currentDiv).append('<b>Direccion: </b><br>');
+			$(currentDiv).append(currentEvent.street + '<br>')
+			$(currentDiv).append(currentEvent.city + ', ' + currentEvent.state + '<br>');
+			$(currentDiv).append('<span data-_id="' + i + '" onclick="lightboxTrigger(this)" class="details">Ver Mas Detalles</span><br><br>');
+		}
+		
 	}
 
 }
