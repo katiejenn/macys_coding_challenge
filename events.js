@@ -55,7 +55,7 @@ function grabEvents(index){
 						/* if the lightbox already exists, we change the contents and visibility */
 						if($('div.lightbox').length > 0){
 
-							/* We render English on the page if the language selected was English */
+							/* we render English on the page if the language selected was English */
 							if(language === "english"){
 
 								var content =
@@ -65,6 +65,8 @@ function grabEvents(index){
 								"<b>Floor: </b>" + floor + "<br>" + 
 								"<b>City: </b>" + city + "<br>" + 
 								"<br><b>Description: </b>" + description + "<br>";
+
+								/* we only add the following attributes 'rsvpurl,' 'previous,' and 'next' if they exist. Unfortunately we cannot eliminate this redundancy in the code due to the AJAX requests */
 								if(rsvpUrl !== "N/A"){
 									content = content + "<br><b>Rsvp <a target='_blank' href=" + rsvpUrl + ">Here</a></b>";
 								}
@@ -77,7 +79,7 @@ function grabEvents(index){
 									content = content + "<div data-_id='" + next + "' class='next navigate' onclick='lightboxTrigger(this)'>Next</div>";
 								}
 
-							/* We render Spanish on the page if the language selected was Spanish */
+							/* we render Spanish on the page if the language selected was Spanish */
 							}else{
 
 								var content =
@@ -87,6 +89,8 @@ function grabEvents(index){
 								"<b>Piso: </b>" + floor + "<br>" + 
 								"<b>Ciudad: </b>" + city + "<br>" + 
 								"<br><b>Descripci&oacute;n: </b>" + description + "<br>";
+
+								/* we only add the following attributes 'rsvpurl,' 'previous,' and 'next' if they exist. Unfortunately we cannot eliminate this redundancy in the code due to the AJAX requests */
 								if(rsvpUrl !== "N/A"){
 									content = content + "<br><b>Rsvp <a target='_blank' href=" + rsvpUrl + ">Here</a></b>";
 								}
@@ -108,7 +112,7 @@ function grabEvents(index){
 						/* if the lightbox does not exist yet, we append it to the page */
 						else{
 
-							/* We render Spanish on the page if the language chosen was Spanish */
+							/* we render Spanish on the page if the language chosen was Spanish */
 							if(language === "spanish"){
 
 								var lightbox = 
@@ -123,6 +127,7 @@ function grabEvents(index){
 								"<b>Ciudad: </b>" + city + "<br>" + 
 								"<br><b>Descripci&oacute;n: </b>" + description + "<br>";
 
+								/* we only add the following attributes 'rsvpurl,' 'previous,' and 'next' if they exist. Unfortunately we cannot eliminate this redundancy in the code due to the AJAX requests */
 								if(rsvpUrl !== "N/A"){
 									lightbox = lightbox + "<br><b>RSVP <a target='_blank' href=" + rsvpUrl + ">Here</a></b>";
 								} 
@@ -136,7 +141,7 @@ function grabEvents(index){
 									lightbox = lightbox + "<div data-_id='" + next + "' class='next navigate' onclick='lightboxTrigger(this)'>Siguiente</div>";
 								}
 
-							/* We render English on the page if the language chosen was English */
+							/* we render English on the page if the language chosen was English */
 							}else{
 
 								var lightbox = 
@@ -151,6 +156,7 @@ function grabEvents(index){
 								"<b>City: </b>" + city + "<br>" + 
 								"<br><b>Description: </b>" + description + "<br>";
 
+								/* we only add the following attributes 'rsvpurl,' 'previous,' and 'next' if they exist. Unfortunately we cannot eliminate this redundancy in the code due to the AJAX requests */
 								if(rsvpUrl !== "N/A"){
 									lightbox = lightbox + "<br><b>RSVP <a target='_blank' href=" + rsvpUrl + ">Here</a></b>";
 								} 
@@ -165,8 +171,6 @@ function grabEvents(index){
 								}
 
 							}
-
-
 
 							lightbox = lightbox + '</div></div>';
 							$('div#wrapper').append(lightbox);
