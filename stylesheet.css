@@ -44,19 +44,17 @@ div.navigate{
 	position: absolute;
 	bottom: 0;
 	margin-bottom: 1em;
+	color: #2F74B1;
 }
 
 div.navigate:hover{
 	text-decoration: underline;
 	cursor: pointer;
+	color: #2F74B1;
 }
 
-/*span.previous{
-	margin-left: 10em;
-}*/
-
 div.next{
-	margin-left: 32em;
+	margin-left: 33.5em;
 }
 
 /* CSS for the lightbox */
