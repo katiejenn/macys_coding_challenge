@@ -20,7 +20,7 @@ function grabEvents(index){
 	            	previous,
 	            	next;
 
-	            	/* the events grabbed from the API endpoint are based off the language chosen. We grab 2014 events for the Spanish option because 2015 is empty in the database (mock data). */
+	            	/* the events grabbed from the API endpoint are based off the language chosen. We grab SpanishEvents2014 because SpanishEvents2015.entries is empty in the database (SpanishEvents 2014 serves as mock data). */
 	            	if(language === "english"){
 	            		events = res.categories.EnglishEvents2015.entries;
 	            	}
@@ -28,19 +28,16 @@ function grabEvents(index){
 	            		events = res.categories.SpanishEvents2014.entries;
 	            	}
 
-	            	/* if the index type is a number, we are only looking for information from one specific event */
+	            	/* if the index type is a number, we are only looking for information from one specific event for the lightbox view */
 					if(typeof index === 'number'){
-						console.log("index:", index);
 
 						/* if index is currently 0, previous will be undefined. Otherwise, it will contain the index of the previous event */
 						if(index !== 0){
 							previous = index - 1;
-							console.log("previous:", previous);
 						}
 						/* if the index is the last element, next will be undefined. Otherwise, it will contain the index of the next event */
 						if(index !== events.length-1){
 							next = index + 1;
-							console.log("next:",next);
 						}
 
 						/* grabbing all the event info for the lightbox view */
@@ -177,7 +174,6 @@ function grabEvents(index){
 					}
 					/* if index is undefined, we are grabbing all the events to render onto the main page */
 					else{
-						console.log("rendering events");
 	            		renderEvents(events);
 					}
 	            }

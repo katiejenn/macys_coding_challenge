@@ -99,6 +99,10 @@ div.content{
 }
 
 a.lightbox-close-trigger{
-	padding-right: 20px;
+	padding-right: 30px;
 	font-size: 2em;
+}
+
+a.lightbox-close-trigger:hover{
+	text-decoration: none;
 }
