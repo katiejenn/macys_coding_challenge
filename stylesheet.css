@@ -7,6 +7,10 @@ p.language-options{
 	float:left;
 }
 
+span.english{
+	color: #FFA429;
+}
+
 span.english:hover{
 	text-decoration: underline;
 	cursor: pointer;

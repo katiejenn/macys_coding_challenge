@@ -1,7 +1,6 @@
 var language = "english";
 
 $(function(){
-
 	grabEvents();
 	languageSelected();
 
@@ -228,6 +227,7 @@ function lightboxTrigger(current){
 
 /* event handlers to detect if a new language was chosen */
 function languageSelected(){
+
 	$('body').on('click', 'span.english', function(e){
 		$('span.spanish').css("color", "black");
 		this.style.color = "#FFA429";
@@ -243,8 +243,5 @@ function languageSelected(){
 		grabEvents();
 	})
 }
-
-
-
 
 
