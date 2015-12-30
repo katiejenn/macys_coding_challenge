@@ -153,11 +153,15 @@ function lightboxTrigger(current){
 
 function languageSelected(){
 	$('body').on('click', 'span.english', function(e){
+		$('span.spanish').css("color", "black");
+		this.style.color = "#FFA429";
 		language = "english";
 		grabEvents();
 	})
 
 	$('body').on('click', 'span.spanish', function(e){
+		$('span.english').css("color", "black");
+		this.style.color = "#FFA429";
 		language = "spanish";
 		console.log("current language is:", language);
 		grabEvents();
