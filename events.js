@@ -240,7 +240,6 @@ function languageSelected(){
 		$('span.english').css("color", "black");
 		this.style.color = "#FFA429";
 		language = "spanish";
-		console.log("current language is:", language);
 		grabEvents();
 	})
 }
